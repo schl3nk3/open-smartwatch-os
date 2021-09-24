@@ -110,6 +110,7 @@ void setup() {
 
     mainAppSwitcher.setup();
 
+  watchFaceSwitcher->registerApp(new OswAppWatchfaceSwabian());
 #if USE_ULP == 1
     // register the ULP program
     init_ulp();
