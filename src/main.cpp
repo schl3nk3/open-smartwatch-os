@@ -53,6 +53,8 @@
 #include "./apps/watchfaces/OswAppWatchfaceBinary.h"
 #include "./apps/watchfaces/OswAppWatchfaceMonotimer.h"
 #include "./apps/watchfaces/OswAppWatchfaceNumerals.h"
+#include "./apps/watchfaces/OswAppWatchfaceNumerals.h"
+#include "./apps/watchfaces/watchface_swabian.h"
 #if OSW_PLATFORM_ENVIRONMENT_MAGNETOMETER == 1 && OSW_PLATFORM_HARDWARE_QMC5883L == 1
 #include "./apps/_experiments/magnetometer_calibrate.h"
 #endif
@@ -96,6 +98,7 @@ void setup() {
         ESP.restart();
     }
 
+  watchFaceSwitcher.registerApp(new OswAppWatchfaceSwabian());
     watchFaceSwitcher.registerApp(new OswAppWatchface());
     watchFaceSwitcher.registerApp(new OswAppWatchfaceDigital());
     watchFaceSwitcher.registerApp(new OswAppWatchfaceMix());
