@@ -23,6 +23,7 @@
 
 // #include "./apps/_experiments/runtime_test.h"
 #include "./apps/_experiments/hello_world.h"
+#include "./apps/_experiments/kissme.h"
 #ifdef OSW_FEATURE_LUA
 #include "./apps/main/luaapp.h"
 #endif
@@ -169,6 +170,7 @@ void loop() {
 #endif
         // For a short howto write your own apps see: app below
         // mainAppSwitcher.registerApp(new OswAppHelloWorld());
+    mainAppSwitcher.registerApp(new OswAppKissMe());
 
         // Fitness App
 #ifdef OSW_FEATURE_STATS_STEPS
