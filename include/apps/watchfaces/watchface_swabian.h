@@ -20,9 +20,10 @@ class OswAppWatchfaceSwabian : public OswApp {
  private:
   OswUI* ui;
   void swabianTime();
-  void drawTextRow(string text_row, int16_t y);
+  void drawTextRow(string text_row, int16_t y, bool lineBelow, bool lineAbove);
   void timeToSwabian(uint32_t hour, uint32_t minute, uint32_t second, string* text_row1, string* text_row2,
                      string* text_row3);
+  string* getHourByIndex(int hour);
 };
 
 #endif
