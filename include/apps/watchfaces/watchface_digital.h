@@ -5,6 +5,7 @@
 #include <osw_ui.h>
 
 #include "osw_app.h"
+#include "fonts/FreeSerif6pt7b.h"
 
 class OswAppWatchfaceDigital : public OswApp {
  public:

@@ -97,10 +97,12 @@ void drawTime24Hour() {
   uint32_t hour = 0;
   OswHal* hal = OswHal::getInstance();
 
-  hal->gfx()->setTextSize(4);
+  // hal->gfx()->setTextSize(4);
   hal->gfx()->setTextMiddleAligned();
   hal->gfx()->setTextLeftAligned();
-  hal->gfx()->setTextCursor(120 - hal->gfx()->getTextOfsetColumns(4), 120);
+  
+  // calculate offset for 00:00:00
+  hal->gfx()->setTextCursor(120 - hal->gfx()->getTextOfsetColumns("00:00:00")/2.0, 120);
 
   hal->getLocalTime(&hour, &minute, &second);
   timeOutput(hour, minute, second);
@@ -109,7 +111,8 @@ void drawTime24Hour() {
 void drawSteps() {
 #ifdef OSW_FEATURE_STATS_STEPS
   uint8_t w = 8;
-  OswAppWatchface::drawStepHistory(OswUI::getInstance(), (DISP_W / 2) - w * 3.5, 180, w, w * 4, OswConfigAllKeys::stepsPerDay.get());
+  OswAppWatchface::drawStepHistory(OswUI::getInstance(), (DISP_W / 2) - w * 3.5, 180, w, w * 4,
+                                   OswConfigAllKeys::stepsPerDay.get());
 #else
   OswHal* hal = OswHal::getInstance();
   uint32_t steps = hal->getStepsToday();
@@ -121,10 +124,13 @@ void drawSteps() {
 #endif
 }
 
-void OswAppWatchfaceDigital::setup() { useMMDDYYYY = OswConfigAllKeys::dateFormat.get() == "mm/dd/yyyy"; }
+void OswAppWatchfaceDigital::setup() { 
+  useMMDDYYYY = OswConfigAllKeys::dateFormat.get() == "mm/dd/yyyy"; 
+}
 
 void OswAppWatchfaceDigital::loop() {
   OswHal* hal = OswHal::getInstance();
+
   if (hal->btnHasGoneDown(BUTTON_3)) {
     hal->increaseBrightness(25);
   }
@@ -134,8 +140,15 @@ void OswAppWatchfaceDigital::loop() {
 
   hal->gfx()->fill(ui->getBackgroundColor());
 
+  if (hal->isCharging()) {
+    hal->gfx()->drawCircle(120, 120, 110, rgb565(0, 255, 0));
+  }
+
+
   drawDate(this->useMMDDYYYY);
 
+  
+  hal->gfx()->setFont(&FreeSerif6pt7b);
   if (!OswConfigAllKeys::timeFormat.get()) {
     drawTime();
   } else {
@@ -149,4 +162,6 @@ void OswAppWatchfaceDigital::loop() {
 
 void OswAppWatchfaceDigital::stop() {
   // OswHal::getInstance()->disableDisplayBuffer();
+  OswHal* hal = OswHal::getInstance();
+  hal->gfx()->setFont(nullptr);
 }
