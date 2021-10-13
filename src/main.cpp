@@ -41,6 +41,7 @@
 #include "./apps/tools/print_debug.h"
 #include "./apps/tools/time_config.h"
 #include "./apps/tools/water_level.h"
+#include "./apps/tools/get_weather.h"
 #include "./apps/watchfaces/watchface.h"
 #include "./apps/watchfaces/watchface_binary.h"
 #include "./apps/watchfaces/watchface_digital.h"
@@ -168,6 +169,8 @@ void loop() {
     // mainAppSwitcher->registerApp(new OswAppHelloWorld());
 
     // tools
+    
+    mainAppSwitcher->registerApp(new OswAppGetWeather());
 
 #if TOOL_STOPWATCH == 1
     mainAppSwitcher->registerApp(new OswAppStopWatch());
