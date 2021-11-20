@@ -5,3 +5,4 @@ firmware.elf
 bin
 /*.png
 screenshots/
+/configs/get-weather.config.h

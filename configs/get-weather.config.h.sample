@@ -1,0 +1,5 @@
+char const *weather_URL = "http://api.openweathermap.org/data/2.5/weather";
+char const *weather_units = "metric";
+char const *weather_appId = "00000e6e9959095a670af8f76190000";
+char const *weather_city = "Berlin";
+char const *weather_country_code = "DE";
