@@ -97,7 +97,6 @@ void setup() {
         sleep(_MAIN_CRASH_SLEEP);
         ESP.restart();
     }
-
   watchFaceSwitcher.registerApp(new OswAppWatchfaceSwabian());
     watchFaceSwitcher.registerApp(new OswAppWatchface());
     watchFaceSwitcher.registerApp(new OswAppWatchfaceDigital());
