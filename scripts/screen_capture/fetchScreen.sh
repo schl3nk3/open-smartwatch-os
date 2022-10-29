@@ -9,7 +9,7 @@ fi
 TEMPFILE=temp.raw
 
 curl http://$1/api/screenserver --output $TEMPFILE
-convert -size 240x240 -depth 8 rgb:$TEMPFILE $2
+magick -size 240x240 -depth 8 rgb:$TEMPFILE $2
 
 if [ -f $TEMPFILE ];
 then

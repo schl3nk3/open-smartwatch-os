@@ -48,6 +48,7 @@
 #include "./apps/watchfaces/OswAppWatchfaceDual.h"
 #include "./apps/watchfaces/OswAppWatchfaceFitness.h"
 #include "./apps/watchfaces/OswAppWatchfaceBinary.h"
+#include "./apps/watchfaces/SampleWatchface.h"
 #if OSW_PLATFORM_ENVIRONMENT_MAGNETOMETER == 1 && OSW_PLATFORM_HARDWARE_QMC5883L == 1
 #include "./apps/_experiments/magnetometer_calibrate.h"
 #endif
@@ -101,13 +102,14 @@ void setup() {
         ESP.restart();
     }
 
-    watchFaceSwitcher.registerApp(new OswAppWatchface());
-    watchFaceSwitcher.registerApp(new OswAppWatchfaceDigital());
-    watchFaceSwitcher.registerApp(new OswAppWatchfaceMix());
-    watchFaceSwitcher.registerApp(new OswAppWatchfaceDual());
-    watchFaceSwitcher.registerApp(new OswAppWatchfaceFitness());
-    watchFaceSwitcher.registerApp(new OswAppWatchfaceBinary());
-    mainAppSwitcher.registerApp(&watchFaceSwitcher);
+        watchFaceSwitcher.registerApp(new SampleWatchface());
+        watchFaceSwitcher.registerApp(new OswAppWatchface());
+        watchFaceSwitcher.registerApp(new OswAppWatchfaceDigital());
+        watchFaceSwitcher.registerApp(new OswAppWatchfaceMix());
+        watchFaceSwitcher.registerApp(new OswAppWatchfaceDual());
+        watchFaceSwitcher.registerApp(new OswAppWatchfaceFitness());
+        watchFaceSwitcher.registerApp(new OswAppWatchfaceBinary());
+        mainAppSwitcher.registerApp(&watchFaceSwitcher);
 
     mainAppSwitcher.setup();
 
